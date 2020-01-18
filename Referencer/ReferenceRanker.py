@@ -23,8 +23,8 @@ class RefRanker():
     # mw:ExtLink
     def get_full_references(self, list_of_articles, lang_code):
         reference_data = {}
-        for article in list_of_articles:
-            #title = link.replace('https://' + lang_code + '.wikipedia.org/wiki/', '')
+        for link in list_of_articles:
+            article = link.replace('https://' + lang_code + '.wikipedia.org/wiki/', '')
             pages = self.get_pages(article, lang_code)
             if not pages:
                 continue
@@ -51,9 +51,10 @@ class RefRanker():
         for k in sorted(counted_data, key=counted_data.get, reverse=True):
             counted_data_sorted[k] = counted_data[k]
 
-        return counted_data
+        return counted_data_sorted
 
     def run(self, list_of_articles, lang_code='en'):
+        print(list_of_articles)
         reference_data = self.get_full_references(list_of_articles, lang_code)
         return self.get_sorted_references(reference_data)
 
