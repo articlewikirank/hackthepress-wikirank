@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="200" src="logo.png (1)">
+  <img height="200" src="logo (1).png">
 </p>
 
 A tool to rank reliability of news articles by using the frequency of Wikipedia citations from different sources on a topic as a proxy for reliability.
