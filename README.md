@@ -6,7 +6,7 @@ WikiRank is a tool to rank reliability of news articles by using the frequency o
 
 ## How the tool works
 
-| Step | Resource  | Description of the action |
+| Step | Resource  | Action |
 | --- | --- | --- |
 | 1 | News article  | The user provides a news article for the tool to analyse. |
 | 2 | Topic  | Perform keyword extraction to define the topic of the article. |
