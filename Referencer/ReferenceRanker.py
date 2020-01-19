@@ -4,8 +4,15 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
 class RefRanker():
+    """ Class to rank references based on their occurance on Wikipedia
+    """
 
     def get_pages(self, title, lang_code):
+        """ Get Wikipedia pages (based on language code) with a given title
+        :param title: Title of a Wikipedia page
+        :param lang_code: Language code for the Wikipedia
+        :return: List of reference sections
+        """
         reference_sections = []
         link = 'https://' + lang_code + '.wikipedia.org/api/rest_v1/page/mobile-sections/' + title
         try:
@@ -22,6 +29,11 @@ class RefRanker():
     # mw-references
     # mw:ExtLink
     def get_full_references(self, list_of_articles, lang_code):
+        """ Get the parsed reference based on a list of articles
+        :param list_of_articles: List of articles on Wikipedia
+        :param lang_code: Language code for the Wikipedia
+        :return: references, parsed
+        """
         reference_data = {}
         for link in list_of_articles:
             article = link.replace('https://' + lang_code + '.wikipedia.org/wiki/', '')
@@ -38,6 +50,10 @@ class RefRanker():
         return reference_data
 
     def get_sorted_references(self, full_reference_data):
+        """
+        :param full_reference_data: Full reference data by article
+        :return: Reference data counted and sorted
+        """
         counted_data = {}
         for page, references in full_reference_data.items():
             for ref in references:
