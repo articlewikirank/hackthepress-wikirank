@@ -19,7 +19,7 @@ print(list_of_articles)
 dbRef = dbRefRanker()
 ref_counts = dbRef.run(list_of_articles)
 print(ref_counts)
-dictRefCounts = { i : len(ref_counts) for i in ref_counts }
+dictRefCounts = { i : ref_counts[i] for i in ref_counts }
 
 data = {domain:dictRefCounts}
 content = json.dumps(data, sort_keys=True, indent=4)
