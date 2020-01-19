@@ -14,3 +14,11 @@
 1. **Wikidata:** The user defines the Wikidata item for the topic based on suggestions, the Wikidata item links to Wikipedia article for the topic.
 1. **Wikidata statements:** WikiRank uses Wikidata statements (e.g [instance of](https://www.wikidata.org/wiki/Property:P31) and [occupation](https://www.wikidata.org/wiki/Property:P106) to understand the context of the topic to form a 'topic domain'
 1. **Wikipedia references:** WikiRank counts the number of citations from each news source in Wikipedia articles in the ‘topic domain’ to find the most used reference sources
+
+----
+
+**Made by:**
+
+Lucie Kaffee&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reuben Thomas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alex Ma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alessandro Toppetti&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Erdinc Mutlu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;John Cummings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kai Landolt
+
+
