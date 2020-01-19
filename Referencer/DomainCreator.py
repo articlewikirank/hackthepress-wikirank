@@ -31,6 +31,27 @@ class DomainGetter():
         article_list = self.query_wikidata(entity, limit_articles_number)
         return article_list
 
+class EntityDomainGetter():
+
+    def get_entity_from_keyword(self, keyword):
+        url = "https://www.wikidata.org/w/api.php?action=wbsearchentities&language=en&format=json&limit=3&search=" + keyword
+        req = requests.get(url)
+        data = json.loads(req.text)
+        entities = []
+        for x in data['search']:
+            print(x['label'])
+            entities.append(x['id'])
+        return entities
+
+    def get_domain_for_entity(self, entity):
+        url = 'http://www.wikidata.org/wiki/Special:EntityData/' + entity + '.json'
+        req = requests.get(url)
+        data = json.loads(req.text)
+        domains = set()
+        for x in data['entities'][entity]['claims']['P31']:
+            domains.add(x['mainsnak']['datavalue']['value']['id'])
+        return list(domains)
+
 class EntityGetter():
 
     def get_entity_from_keyword(self, keyword):
