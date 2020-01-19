@@ -3,8 +3,15 @@ import requests
 import json
 
 class DomainGetter():
+    """" Get a list of articles for a domain of a given entity
+    """
 
     def query_wikidata(self, entity, limit_articles_number=None):
+        """ Query Wikidata to get a list of articles in the domain of the given entity
+        :param entity: Entity ID for which we look the domain up in the form "Q123"
+        :param limit_articles_number: Limit the number of articles that are returned from the SPARQL request (optional)
+        :return: Return a list of articles in English Wikipedia in the domain
+        """
         articles_list = []
         sparql = SPARQLWrapper("http://query.wikidata.org/sparql")
         query = """
@@ -32,8 +39,14 @@ class DomainGetter():
         return article_list
 
 class EntityDomainGetter():
+    """ Get a domain for a given entity, based on a keyword
+    """
 
     def get_entity_from_keyword(self, keyword):
+        """ Given a keyword, get the respective Wikidata entity ID
+        :param keyword: Keyword string
+        :return: List of entities matching the keyword
+        """
         url = "https://www.wikidata.org/w/api.php?action=wbsearchentities&language=en&format=json&limit=3&search=" + keyword
         req = requests.get(url)
         data = json.loads(req.text)
@@ -44,6 +57,10 @@ class EntityDomainGetter():
         return entities
 
     def get_domain_for_entity(self, entity):
+        """ Get a domain for a given entity ID
+        :param entity: entity ID in the format "Q123"
+        :return: return a list of domains through the Wikidata API
+        """
         url = 'http://www.wikidata.org/wiki/Special:EntityData/' + entity + '.json'
         req = requests.get(url)
         data = json.loads(req.text)
@@ -52,9 +69,19 @@ class EntityDomainGetter():
             domains.add(x['mainsnak']['datavalue']['value']['id'])
         return list(domains)
 
+    def run(self, keyword):
+        entity = self.get_entity_from_keyword(keyword)
+        return self.get_domain_for_entity(entity)
+
 class EntityGetter():
+    """ For a given keyword, return an entity ID
+    """
 
     def get_entity_from_keyword(self, keyword):
+        """ Get an entity ID based on label match through Wikidata API
+        :param keyword: Keyword as string
+        :return: Entity ID in the form "Q123"
+        """
         url = "https://www.wikidata.org/w/api.php?action=wbsearchentities&language=en&format=json&limit=3&search=" + keyword
         req = requests.get(url)
         data = json.loads(req.text)
