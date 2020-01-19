@@ -17,7 +17,7 @@
 
 ----
 
-**Made by:**
+## Made by:
 
 Lucie Kaffee&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reuben Thomas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alex Ma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alessandro Toppetti&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Erdinc Mutlu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;John Cummings&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kai Landolt
 
