@@ -19,16 +19,19 @@ def handle_request():
 		data = request.get_json()
 
 		# Receive the text
-		text = ''
-		for line in data['text']:
-			text += line.strip() + ' '
+		text = data['text']
 
 		# Receive the url
 		_, td, tsu = extract(data['url'])
 		curr_url = td + '.' + tsu
+		print("THIS IS THE TEXT")
+		print(text)
 
 		# Get keywords
 		keywords = textextr.run(text, 2)
+
+		print("THIS IS THE KEYWORDS")
+		print(keywords)
 
 		# Get entities
 		entities = []
@@ -36,11 +39,15 @@ def handle_request():
 			entities.append(entityget.run(keyword))
 
 		entity = entities[0][0]
+		print("THIS IS THE ENTITY")
+		print(entity)
 
 		# Get domains
 		list_of_articles = domcre.run(entity, 100)
 
-
+		print("THIS IS THE LIST OF ARTICLES")
+		print(list_of_articles)
+		
 		# Rank references
 		ranked_articles = refrank.run(list_of_articles)
 		top_articles = dict(sorted(ranked_articles.items(), key=operator.itemgetter(1), reverse=True)[:5])
@@ -61,3 +68,18 @@ def handle_request():
 		return response
 	else:
 		return 'Hello, World!'
+
+
+@app.route('/keywords', methods=['GET', 'POST']) # Tells the flask server on which url path does it trigger which for this example is the index page calling "hello_world" function.
+def handle_keyword_request():
+	if request.method == 'POST':
+		data = request.get_json()
+
+		# Get keywords
+		keywords = textextr.run(data['text'], 10)
+		print('HERE ARE THE KEYWORDS')
+		print(keywords)
+
+		return jsonify(keywords)
+	else:
+		return 'Hello, Keywords!'
